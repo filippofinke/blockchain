@@ -1,0 +1,16 @@
+{
+    "name": "filippofinke/blockchain",
+    "description": "A php blockchain implementation",
+    "authors": [
+        {
+            "name": "Filippo Finke",
+            "email": "filippo.finke@samtrevano.ch"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "FilippoFinke\\": "src/"
+        }
+    }
+}

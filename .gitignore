@@ -1,2 +1,3 @@
-/old/vendor/
-/old/composer.lock
+/old/
+/vendor/
+composer.lock

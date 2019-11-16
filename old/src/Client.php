@@ -1,7 +1,9 @@
 <?php
 define("DELIMITER", "\r\n");
 
-if(!isset($argv[1])) exit("Provide a node address!".PHP_EOL);
+if (!isset($argv[1])) {
+    exit("Provide a node address!".PHP_EOL);
+}
 $node = $argv[1];
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 [$ip, $port] = explode(":", $node);
@@ -12,7 +14,7 @@ try {
 }
 $running = true;
 $result = null;
-while($running) {
+while ($running) {
     system('clear');
     echo "Connected to $node".PHP_EOL;
     $request = array("type" => 7,"data" => "");
@@ -20,7 +22,7 @@ while($running) {
     $response = json_decode(read($socket), true);
     echo "Difficulty: ".$response["difficulty"].PHP_EOL;
     echo "Peers:".PHP_EOL;
-    foreach($response["peers"] as $peer) {
+    foreach ($response["peers"] as $peer) {
         echo " - $peer".PHP_EOL;
     }
     echo PHP_EOL."Commands:".PHP_EOL;
@@ -28,12 +30,12 @@ while($running) {
     echo "1 - Add a peer".PHP_EOL;
     echo "2 - Get last block".PHP_EOL;
     echo "3 - Get blockchain".PHP_EOL;
-    if($result) {
+    if ($result) {
         echo PHP_EOL."- Result -".PHP_EOL;
         echo $result.PHP_EOL;
     }
     $command = readline("Insert a command: ");
-    if($command == "0") {
+    if ($command == "0") {
         $request = array(
             "type" => 3,
             "data" => array(
@@ -42,18 +44,18 @@ while($running) {
         );
         socket_write($socket, json_encode($request).DELIMITER);
         $result = "Requested to mine a block!";
-    } else if($command == "1") {
+    } elseif ($command == "1") {
         $request = array(
             "type" => 4,
             "data" => readline("Insert a peer: ")
         );
         socket_write($socket, json_encode($request).DELIMITER);
         $result = "Requested to add a peer!";
-    } else if($command == "2") {
+    } elseif ($command == "2") {
         $request = array("type" => 5,"data" => "");
         socket_write($socket, json_encode($request).DELIMITER);
         $result = read($socket);
-    } else if($command == "3") {
+    } elseif ($command == "3") {
         $request = array("type" => 6,"data" => "");
         socket_write($socket, json_encode($request).DELIMITER);
         $result = read($socket);
@@ -63,11 +65,12 @@ while($running) {
 }
 socket_close($socket);
 
-function read($socket) {
+function read($socket)
+{
     $read = "";
     while (true) {
         $read .= socket_read($socket, 1024);
-        if(strpos($read, DELIMITER) !== false) {
+        if (strpos($read, DELIMITER) !== false) {
             return $read;
         }
     }

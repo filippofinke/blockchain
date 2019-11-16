@@ -40,10 +40,11 @@ class Blockchain
 
     private $peerToPeer;
 
-    public function getPeers() : array {
+    public function getPeers() : array
+    {
         Logger::log("blockchain", __FUNCTION__);
         $peers = [];
-        foreach($this->peers as $peer) {
+        foreach ($this->peers as $peer) {
             $peers[] = (string)$peer->getRemoteAddress();
         }
         return $peers;
@@ -373,7 +374,6 @@ class Blockchain
             };
 
             $peerToPeer = function ($port) use ($blockchain, $peerHandler) {
-
                 $server = Server::listen('127.0.0.1:'.$port);
         
                 Logger::log('p2p', 'Listening on: '.$server->getAddress());
