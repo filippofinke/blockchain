@@ -12,5 +12,8 @@
         "psr-4": {
             "FilippoFinke\\": "src/"
         }
+    },
+    "require-dev": {
+        "victorjonsson/markdowndocs": "^1.3"
     }
 }
