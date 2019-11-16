@@ -1,11 +1,7 @@
 # A php blockchain implementation
 ---
 
-TODO: Rewrite entire codebase this is just a concept
+A very simple implementation of a blockchain written in php.
 
-
-Features:
-- Peer To Peer Sync
-- Blockchain validation
-- Proof of Work (PoW)
-- Control client
+# Todo:
+- PeerToPeer between blockchains
