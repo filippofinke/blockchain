@@ -1,7 +1,10 @@
 <?php
 use FilippoFinke\Blockchain;
-
 require __DIR__ . '/vendor/autoload.php';
+
+/**
+ * A simple example.
+ */
 
 $firstBlockChain = new Blockchain();
 $secondBlockChain = new Blockchain();
